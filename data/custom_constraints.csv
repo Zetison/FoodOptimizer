@@ -1,0 +1,7 @@
+﻿Description,Constraint
+Andel umettede fettsyrer,[Enumettede fettsyrer (g)]+[Flerumettede fettsyrer (g)]≥2/3*[Fett (g)]
+Tilsatt og fritt sukker,"[Sukker, tilsatt (E%)]+[Sukker, fritt (E%)]<10"
+Essensielle flerumettede fettsyrer,[C18:2n-6 (linolsyre) (E%)]+[C18:3n-3 (alfalinolensyre) (E%)]≥3
+Tiamin,[Vitamin B1 (tiamin) (mg)]≥0.1/1000*[Kilojoule (kJ)]
+Niacin,[Vitamin B3 (niacin) (mg)]≥1.6/1000*[Kilojoule (kJ)]
+Kostfiber,[Kostfiber (g)]≥3/1000*[Kilojoule (kJ)]

@@ -1,0 +1,28 @@
+﻿Description,Lower,Upper,Recommended
+Fett (E%),25,40,32.5
+Enumettede fettsyrer (E%),10,20,
+Flerumettede fettsyrer (E%),5,10,
+Mettede fettsyrer (E%),,10,
+Transfettsyrer (E%),,,0
+Karbohydrat (E%),45,60,52.5
+Protein (E%),10,20,15
+C12:0 (laurinsyre) (E%),,,
+C14:0 (myristinsyre) (E%),,,
+C16:0 (palmitinsyre) (E%),,,
+C18:0 (stearinsyre) (E%),,,
+C16:1 sum (palmitoleinsyre) (E%),,,
+C18:1 sum (oljesyre) (E%),,,
+C18:2n-6 (linolsyre) (E%),,,
+C18:3n-3 (alfalinolensyre) (E%),0.5,,
+C20:3n-3 (eikosatriensyre) (E%),,,
+"C20:3n-6 (dihomo-gamma-linolensyre, DGLA) (E%)",,,
+C20:4n-3 (eikosatetraensyre) (E%),,,
+C20:4n-6 (arakidonsyre) (E%),,,
+"C20:5n-3 (eikosapentaensyre, EPA) (E%)",,,
+"C22:5n-3 (dokosapentaensyre, DPA) (E%)",,,
+"C22:6n-3 (dokosaheksaensyre, DHA) (E%)",,,
+Omega-3 (E%),1,,
+Omega-6 (E%),,,
+Stivelse (E%),,,
+Sukkerarter (E%),,,
+Alkohol (E%),,,

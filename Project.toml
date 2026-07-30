@@ -1,0 +1,29 @@
+name = "FoodOptimizer"
+uuid = "f724a733-8816-41a6-a42c-792d3549a4b0"
+version = "0.1.0"
+authors = ["Jon Vegard Venås <jonvegard.venas@gmail.com>"]
+
+[deps]
+CPLEX = "a076750e-1247-5638-91d2-ce28b192dca0"
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+HiGHS = "87dc4568-4c63-4d18-b0c0-bb2238e4078b"
+JuMP = "4076af6c-e467-56ae-b986-b466b2749572"
+MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
+PrettyTables = "08abe8d2-0d0c-5749-adfa-8a2ac140af0d"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
+YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
+
+[compat]
+julia = "1.12"
+CPLEX = "1.2"
+CSV = "0.10"
+DataFrames = "1.8"
+HiGHS = "1.24"
+JuMP = "1.31"
+MathOptInterface = "1.52"
+PrettyTables = "3.4"
+Printf = "1.11"
+XLSX = "0.12"
+YAML = "0.4"

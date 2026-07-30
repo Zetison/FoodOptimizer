@@ -1,0 +1,60 @@
+﻿Description,Lower,Upper,Recommended
+Vann (g),,,
+Kilojoule (kJ),,,
+Kilokalorier (kcal),,,
+Fett (g),,,
+Mettede fettsyrer (g),,,
+C12:0 (laurinsyre) (g),,,
+C14:0 (myristinsyre) (g),,,
+C16:0 (palmitinsyre) (g),,,
+C18:0 (stearinsyre) (g),,,
+Transfettsyrer (g),,,
+Enumettede fettsyrer (g),,,
+C16:1 sum (palmitoleinsyre) (g),,,
+C18:1 sum (oljesyre) (g),,,
+Flerumettede fettsyrer (g),,,
+C18:2n-6 (linolsyre) (g),,,
+C18:3n-3 (alfalinolensyre) (g),,,
+C20:3n-3 (eikosatriensyre) (g),,,
+"C20:3n-6 (dihomo-gamma-linolensyre, DGLA) (g)",,,
+C20:4n-3 (eikosatetraensyre) (g),,,
+C20:4n-6 (arakidonsyre) (g),,,
+"C20:5n-3 (eikosapentaensyre, EPA) (g)",,,
+"C22:5n-3 (dokosapentaensyre, DPA) (g)",,,
+"C22:6n-3 (dokosaheksaensyre, DHA) (g)",,,
+Omega-3 (g),,,
+Omega-6 (g),,,
+Kolesterol (mg),,,0
+Karbohydrat (g),,,
+Stivelse (g),,,
+Sukkerarter (g),,,
+"Sukker, tilsatt (g)",,,0
+"Sukker, fritt (g)",,,0
+Kostfiber (g),35,,
+Protein (g),,,
+Alkohol (g),,,0
+Vitamin A (RAE) (RAE),,,
+Vitamin A (RE) (RE),,3000,800
+Betakaroten (µg),,,
+Retinol (µg),,3000,
+Vitamin D (µg),,100,10
+Vitamin E (mg-ATE),11,300,
+Vitamin B1 (tiamin) (mg),,,
+Vitamin B2 (riboflavin) (mg),,,1.6
+Vitamin B3 (niacin) (mg),,,
+Niacinekvivalenter (mg),,,
+Vitamin B6 (pyridoksin) (mg),,12,1.8
+Vitamin B9 (folat) (µg),,,330
+Vitamin B12 (kobalamin) (µg),4,,
+Vitamin C (askorbinsyre) (mg),110,,
+Kalsium (Ca) (mg),,2500,950
+Kalium (K) (mg),3500,,
+Natrium (Na) (mg),1500,2300,
+Salt (NaCl) (g),,5.75,
+Fosfor (P) (mg),520,3000,
+Magnesium (Mg) (mg),350,,
+Jern (Fe) (mg),,60,9
+Kobber (Cu) (mg),,5,0.9
+Sink (Zn) (mg),,25,12.7
+Selen (Se) (µg),90,255,
+Jod (I) (µg),150,600,
