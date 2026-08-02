@@ -53,21 +53,25 @@ function main()
     append!(foods, foods_extra; cols = :setequal, promote = true)
 
     # Exclude foods based on FoodEx2 groups specified in the config
-    for group ∈ config["model"]["exclude_foodex2_groups"]
-        foods = filter(
-            row ->
-                ismissing(row["FoodEx2-klassifisering"]) ||
-                !occursin(group, row["FoodEx2-klassifisering"]),
-            foods,
-        )
+    if !isnothing(config["model"]["exclude_foodex2_groups"])
+        for group ∈ config["model"]["exclude_foodex2_groups"]
+            foods = filter(
+                row ->
+                    ismissing(row["FoodEx2-klassifisering"]) ||
+                    !occursin(group, row["FoodEx2-klassifisering"]),
+                foods,
+            )
+        end
     end
 
     # Exclude foods based on categories specified in the config
-    for category ∈ config["model"]["exclude_categories"]
-        foods = filter(
-            row -> ismissing(row["Kategori"]) || !occursin(category, row["Kategori"]),
-            foods,
-        )
+    if !isnothing(config["model"]["exclude_categories"])
+        for category ∈ config["model"]["exclude_categories"]
+            foods = filter(
+                row -> ismissing(row["Kategori"]) || !occursin(category, row["Kategori"]),
+                foods,
+            )
+        end
     end
 
     # Remove columns that are entirely missing from foods_extra

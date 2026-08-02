@@ -28,8 +28,8 @@ model:
 hard_coded_constraints:
   energy_intake: "2700 kcal" # energy intake (set to null to use input from csv-file) 
   food_item_limit: 15 # set to 0 for no limit, otherwise set to a positive integer
-  lower_limit_unsalted_nuts: 20.0 # lower limit for unsalted nuts in grams
-  lower_limit_fruit_veg: 800.0 # lower limit for fruit and vegetables in grams
+  lower_limit_unsalted_nuts: 20.0 # lower limit for unsalted nuts in grams (set to null for no limit)
+  lower_limit_fruit_veg: 800.0 # lower limit for fruit and vegetables in grams (set to null for no limit)
   fruit_to_veg_ratio: null # ratio of fruit to vegetables (set to null for no ratio)
   lower_number_of_fruits: 2 # lower number of fruits (set to null for no limit)
   lower_number_of_vegetables: 2 # lower number of vegetables (set to null for no limit)
