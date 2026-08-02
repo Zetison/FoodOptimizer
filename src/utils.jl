@@ -480,6 +480,8 @@ function build_model(foods, nutrients, limits, energy_limits, config)
             100.0 * energy_kJg[d] * intake[energy_col[d]] ≥ energy_lower[d] * total_energy,
             base_name = "energy_lower",
         )
+    else
+        []
     end
 
     # Add: lower <= 100 * nutrient_energy / total_energy <= upper
@@ -491,6 +493,8 @@ function build_model(foods, nutrients, limits, energy_limits, config)
             100.0 * energy_kJg[d] * intake[energy_col[d]] ≤ energy_upper[d] * total_energy,
             base_name = "energy_upper",
         )
+    else
+        []
     end
 
     # Set lower bounds for each food item
@@ -502,11 +506,12 @@ function build_model(foods, nutrients, limits, energy_limits, config)
             lower[n] ≤ intake[n],
             base_name = "nutrient_lower",
         )
+    else
+        []
     end
 
     # Set upper bounds for each food item
     nutrients_upper = [n for n ∈ nutrients if !ismissing(upper[n])]
-
     upper_cons = if !isempty(nutrients_upper)
             @constraint(
             model,
@@ -514,6 +519,8 @@ function build_model(foods, nutrients, limits, energy_limits, config)
             intake[n] ≤ upper[n],
             base_name = "nutrient_upper",
         )
+    else
+        []
     end
 
     food_lower = Dict(zip(I, foods.Lower))
