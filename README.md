@@ -42,11 +42,11 @@ model:
 
 ## Input Files
 
-The optimiser uses the following input files:
+The optimiser uses the following input files (in the `data` folder):
 
 | File | Purpose |
 |------|---------|
-| `matvaretabellen_2026_complete.csv` | Main food database containing nutrient content per 100 g edible portion. |
+| `matvaretabellen_2026.csv` | Main food database containing nutrient content per 100 g edible portion. |
 | `matvaretabellen_extra.csv` | Additional user-defined foods not present in the main database. |
 | `food_limits.csv` | Optional lower bounds, upper bounds and recommended amounts for individual foods. |
 | `nutrient_limits.csv` | Lower bounds, upper bounds and recommended intake levels for nutrients. |

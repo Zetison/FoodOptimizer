@@ -362,11 +362,14 @@ function build_model(foods, nutrients, limits, energy_limits, config)
         I[occursin.(Ref("Nøtter - usaltet"), coalesce.(foods[!, "Kostholdsgrupper"], ""))]
     lower_limit_unsalted_nuts =
         config["hard_coded_constraints"]["lower_limit_unsalted_nuts"]
-    unsalted_nuts_lower_cons = @constraint(
-        model,
-        100*sum(amount[i] for i ∈ I_unsalted_nuts) >= lower_limit_unsalted_nuts,
-        base_name = "Unsalted_nuts_lower",
-    )
+
+    unsalted_nuts_lower_cons = if !isnothing(lower_limit_unsalted_nuts)
+        @constraint(
+            model,
+            100*sum(amount[i] for i ∈ I_unsalted_nuts) >= lower_limit_unsalted_nuts,
+            base_name = "Unsalted_nuts_lower",
+        )
+    end
 
     # Add constraint for minimum amount of fruit and vegetables (Kostholdsgrupper)
     I_fruit_veg = I[occursin.(
@@ -374,31 +377,31 @@ function build_model(foods, nutrients, limits, energy_limits, config)
         coalesce.(foods[!, "Kostholdsgrupper"], ""),
     )]
     lower_limit_fruit_veg = config["hard_coded_constraints"]["lower_limit_fruit_veg"]
-    fruit_veg_lower_cons = @constraint(
-        model,
-        100*sum(amount[i] for i ∈ I_fruit_veg) >= lower_limit_fruit_veg,
-        base_name = "Fruit_veg_lower",
-    )
+    fruit_veg_lower_cons = if !isnothing(lower_limit_fruit_veg)
+        @constraint(
+            model,
+            100*sum(amount[i] for i ∈ I_fruit_veg) >= lower_limit_fruit_veg,
+            base_name = "Fruit_veg_lower",
+        )
+    end
 
     fruit_to_veg_ratio = config["hard_coded_constraints"]["fruit_to_veg_ratio"]
-    if !isnothing(fruit_to_veg_ratio)
-        I_fruit = I[occursin.(
-            Ref(r"Frukt og bær"),
-            coalesce.(foods[!, "Kostholdsgrupper"], ""),
-        )]
-        I_veg = I[occursin.(
-            Ref(r"Grønnsaker"),
-            coalesce.(foods[!, "Kostholdsgrupper"], ""),
-        )]
-        fruit_to_veg_ratio_cons = @constraint(
+    I_fruit = I[occursin.(
+        Ref(r"Frukt og bær"),
+        coalesce.(foods[!, "Kostholdsgrupper"], ""),
+    )]
+    I_veg = I[occursin.(
+        Ref(r"Grønnsaker"),
+        coalesce.(foods[!, "Kostholdsgrupper"], ""),
+    )]
+    fruit_to_veg_ratio_cons = if !isnothing(fruit_to_veg_ratio)
+        @constraint(
             model,
             100*sum(amount[i] for i ∈ I_fruit) >=
             fruit_to_veg_ratio *
             100 * sum(amount[i] for i ∈ I_veg),
             base_name = "Fruit_to_veg_ratio",
         )
-    else
-        fruit_to_veg_ratio_cons = nothing
     end
 
     lower_number_of_fruits = config["hard_coded_constraints"]["lower_number_of_fruits"]
@@ -470,40 +473,55 @@ function build_model(foods, nutrients, limits, energy_limits, config)
 
     # Set lower bounds for each energy share
     energy_desc_lower = [d for d ∈ energy_desc if !ismissing(energy_lower[d])]
-    energy_lower_cons = @constraint(
-        model,
-        [d ∈ energy_desc_lower],
-        100.0 * energy_kJg[d] * intake[energy_col[d]] ≥ energy_lower[d] * total_energy,
-        base_name = "energy_lower",
-    )
+    energy_lower_cons = if !isempty(energy_desc_lower)
+            @constraint(
+            model,
+            [d ∈ energy_desc_lower],
+            100.0 * energy_kJg[d] * intake[energy_col[d]] ≥ energy_lower[d] * total_energy,
+            base_name = "energy_lower",
+        )
+    else
+        []
+    end
 
     # Add: lower <= 100 * nutrient_energy / total_energy <= upper
     energy_desc_upper = [d for d ∈ energy_desc if !ismissing(energy_upper[d])]
-    energy_upper_cons = @constraint(
-        model,
-        [d ∈ energy_desc_upper],
-        100.0 * energy_kJg[d] * intake[energy_col[d]] ≤ energy_upper[d] * total_energy,
-        base_name = "energy_upper",
-    )
+    energy_upper_cons = if !isempty(energy_desc_upper)
+            @constraint(
+            model,
+            [d ∈ energy_desc_upper],
+            100.0 * energy_kJg[d] * intake[energy_col[d]] ≤ energy_upper[d] * total_energy,
+            base_name = "energy_upper",
+        )
+    else
+        []
+    end
 
     # Set lower bounds for each food item
     nutrients_lower = [n for n ∈ nutrients if !ismissing(lower[n])]
-    lower_cons = @constraint(
-        model,
-        [n ∈ nutrients_lower],
-        lower[n] ≤ intake[n],
-        base_name = "nutrient_lower",
-    )
+    lower_cons = if !isempty(nutrients_lower)
+            @constraint(
+            model,
+            [n ∈ nutrients_lower],
+            lower[n] ≤ intake[n],
+            base_name = "nutrient_lower",
+        )
+    else
+        []
+    end
 
     # Set upper bounds for each food item
     nutrients_upper = [n for n ∈ nutrients if !ismissing(upper[n])]
-
-    upper_cons = @constraint(
-        model,
-        [n ∈ nutrients_upper],
-        intake[n] ≤ upper[n],
-        base_name = "nutrient_upper",
-    )
+    upper_cons = if !isempty(nutrients_upper)
+            @constraint(
+            model,
+            [n ∈ nutrients_upper],
+            intake[n] ≤ upper[n],
+            base_name = "nutrient_upper",
+        )
+    else
+        []
+    end
 
     food_lower = Dict(zip(I, foods.Lower))
     food_upper = Dict(zip(I, foods.Upper))
@@ -776,7 +794,7 @@ function calc_scaled_foods(model, foods, nutrients, config)
 
     # Dual-like value for each food decision variable (LP reduced cost)
     if config["hard_coded_constraints"]["food_item_limit"] > 0
-        @warn "Dual values for food items are not available when a food item limit is set. The dual values will be set to missing."
+        @warn "Dual values for food items are not available when a food item limit is set."
         columns = ["Matvare", "Amount (g)", "Lower", "Upper", "Recommended", nutrients...]
 
     else
