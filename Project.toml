@@ -1,6 +1,6 @@
 name = "FoodOptimizer"
 uuid = "f724a733-8816-41a6-a42c-792d3549a4b0"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Jon Vegard Venås <jonvegard.venas@gmail.com>"]
 
 [deps]

@@ -793,8 +793,7 @@ function calc_scaled_foods(model, foods, nutrients, config)
         [food_recommended[i] for i ∈ scaled_foods[!, "Matvare ID"]]
 
     # Dual-like value for each food decision variable (LP reduced cost)
-    if config["hard_coded_constraints"]["food_item_limit"] > 0
-        @warn "Dual values for food items are not available when a food item limit is set."
+    if any(JuMP.is_binary, JuMP.all_variables(model))
         columns = ["Matvare", "Amount (g)", "Lower", "Upper", "Recommended", nutrients...]
 
     else
